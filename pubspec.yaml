@@ -1,0 +1,17 @@
+name: neon_sheet_ai
+description: Bilingual animated Excel-like workspace powered by Gemini.
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  http: ^1.2.1
+  url_launcher: ^6.3.0
+
+flutter:
+  uses-material-design: true
