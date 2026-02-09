@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neon Sheet AI | نيون شيت</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo"><i class="fa-solid fa-grid-2"></i></span>
+        <div>
+          <h1 data-i18n="brand_title">Neon Sheet AI</h1>
+          <p data-i18n="brand_tagline">Smart Excel-like workspace powered by Gemini</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button class="ghost-button" id="langToggle">
+          <i class="fa-solid fa-language"></i>
+          <span data-i18n="toggle_language">AR / EN</span>
+        </button>
+        <button class="glow-button" data-action="show-auth" data-target="login" data-i18n="login">Login</button>
+      </div>
+    </header>
+
+    <section class="splash" id="splash">
+      <div class="splash-content">
+        <div class="splash-orb"></div>
+        <h2 data-i18n="splash_title">Welcome to Neon Sheet</h2>
+        <p data-i18n="splash_desc">A bilingual, animated spreadsheet universe with Gemini intelligence.</p>
+        <button class="glow-button" data-action="start-onboarding" data-i18n="start">Start</button>
+      </div>
+    </section>
+
+    <section class="onboarding hidden" id="onboarding">
+      <div class="onboarding-card">
+        <div class="onboarding-steps">
+          <div class="step active" data-step="1">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h3 data-i18n="onboard_1_title">Instant Magic</h3>
+            <p data-i18n="onboard_1_desc">Load Excel files and let Gemini summarize, edit, and visualize.</p>
+          </div>
+          <div class="step" data-step="2">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3 data-i18n="onboard_2_title">AI Reports</h3>
+            <p data-i18n="onboard_2_desc">Ask for KPI dashboards, forecasts, and smart recommendations.</p>
+          </div>
+          <div class="step" data-step="3">
+            <i class="fa-solid fa-people-arrows"></i>
+            <h3 data-i18n="onboard_3_title">Bilingual Flow</h3>
+            <p data-i18n="onboard_3_desc">Switch between Arabic and English with a single tap.</p>
+          </div>
+        </div>
+        <div class="onboarding-actions">
+          <button class="ghost-button" data-action="skip-onboarding" data-i18n="skip">Skip</button>
+          <button class="glow-button" data-action="next-onboarding" data-i18n="next">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="auth hidden" id="auth">
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <button class="tab active" data-auth="login" data-i18n="login">Login</button>
+          <button class="tab" data-auth="signup" data-i18n="signup">Create Account</button>
+          <button class="tab" data-auth="guest" data-i18n="guest">Guest</button>
+        </div>
+        <div class="auth-panel" id="login">
+          <h2 data-i18n="login_title">Welcome back</h2>
+          <label>
+            <span data-i18n="email">Email</span>
+            <input type="email" placeholder="you@email.com" />
+          </label>
+          <label class="password-field">
+            <span data-i18n="password">Password</span>
+            <input type="password" id="loginPassword" placeholder="••••••" />
+            <button type="button" class="icon-button" data-action="toggle-password" data-target="loginPassword">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </label>
+          <button class="glow-button" data-action="enter-app" data-i18n="enter">Enter</button>
+        </div>
+        <div class="auth-panel hidden" id="signup">
+          <h2 data-i18n="signup_title">Create your workspace</h2>
+          <label>
+            <span data-i18n="full_name">Full Name</span>
+            <input type="text" placeholder="Neon User" />
+          </label>
+          <label>
+            <span data-i18n="email">Email</span>
+            <input type="email" placeholder="you@email.com" />
+          </label>
+          <label class="password-field">
+            <span data-i18n="password">Password</span>
+            <input type="password" id="signupPassword" placeholder="••••••" />
+            <button type="button" class="icon-button" data-action="toggle-password" data-target="signupPassword">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </label>
+          <button class="glow-button" data-action="enter-app" data-i18n="create">Create Account</button>
+        </div>
+        <div class="auth-panel hidden" id="guest">
+          <h2 data-i18n="guest_title">Try as guest</h2>
+          <p data-i18n="guest_desc">Explore the AI spreadsheet without saving anything.</p>
+          <button class="glow-button" data-action="enter-app" data-i18n="enter_guest">Enter as guest</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard hidden" id="dashboard">
+      <aside class="sidebar">
+        <button class="sidebar-button active" data-panel="workspace">
+          <i class="fa-solid fa-table"></i>
+          <span data-i18n="workspace">Workspace</span>
+        </button>
+        <button class="sidebar-button" data-panel="ai-center">
+          <i class="fa-solid fa-brain"></i>
+          <span data-i18n="ai_center">AI Center</span>
+        </button>
+        <button class="sidebar-button" data-panel="reports">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span data-i18n="reports">Reports</span>
+        </button>
+        <button class="sidebar-button" data-panel="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span data-i18n="search">Search</span>
+        </button>
+        <button class="sidebar-button" data-panel="settings">
+          <i class="fa-solid fa-sliders"></i>
+          <span data-i18n="settings">Settings</span>
+        </button>
+      </aside>
+
+      <main class="panel">
+        <section class="panel-section" id="workspace">
+          <div class="panel-header">
+            <div>
+              <h2 data-i18n="workspace_title">Excel Universe</h2>
+              <p data-i18n="workspace_desc">Import any Excel-compatible file and watch it animate.</p>
+            </div>
+            <div class="panel-actions">
+              <label class="file-button">
+                <input type="file" id="fileInput" accept=".xls,.xlsx,.csv" />
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span data-i18n="upload">Upload</span>
+              </label>
+              <button class="ghost-button" id="exportButton">
+                <i class="fa-solid fa-file-export"></i>
+                <span data-i18n="export">Export</span>
+              </button>
+            </div>
+          </div>
+          <div class="sheet" id="sheet">
+            <div class="sheet-grid" id="sheetGrid"></div>
+          </div>
+        </section>
+
+        <section class="panel-section hidden" id="ai-center">
+          <div class="panel-header">
+            <div>
+              <h2 data-i18n="ai_center_title">Gemini Command Center</h2>
+              <p data-i18n="ai_center_desc">Describe what you need. Gemini takes the wheel.</p>
+            </div>
+          </div>
+          <div class="ai-panel">
+            <textarea id="aiPrompt" placeholder="اكتب طلبك هنا"></textarea>
+            <button class="glow-button" id="aiRun" data-i18n="run_ai">Run with Gemini</button>
+            <div class="ai-output" id="aiOutput"></div>
+          </div>
+        </section>
+
+        <section class="panel-section hidden" id="reports">
+          <div class="panel-header">
+            <div>
+              <h2 data-i18n="reports_title">AI Reports & Analytics</h2>
+              <p data-i18n="reports_desc">Generate reports, summaries, and dashboards from your data.</p>
+            </div>
+          </div>
+          <div class="report-cards">
+            <div class="report-card">
+              <h3 data-i18n="report_kpi">KPI Dashboard</h3>
+              <p data-i18n="report_kpi_desc">Gemini crafts charts and insights automatically.</p>
+              <button class="ghost-button" data-action="run-report" data-report="kpi" data-i18n="generate">Generate</button>
+            </div>
+            <div class="report-card">
+              <h3 data-i18n="report_forecast">Forecast</h3>
+              <p data-i18n="report_forecast_desc">Predict trends and highlight anomalies.</p>
+              <button class="ghost-button" data-action="run-report" data-report="forecast" data-i18n="generate">Generate</button>
+            </div>
+            <div class="report-card">
+              <h3 data-i18n="report_story">Narrative Report</h3>
+              <p data-i18n="report_story_desc">Turn your spreadsheet into a polished report.</p>
+              <button class="ghost-button" data-action="run-report" data-report="story" data-i18n="generate">Generate</button>
+            </div>
+          </div>
+          <div class="ai-output" id="reportOutput"></div>
+        </section>
+
+        <section class="panel-section hidden" id="search">
+          <div class="panel-header">
+            <div>
+              <h2 data-i18n="search_title">Built-in Search</h2>
+              <p data-i18n="search_desc">Search the web from inside your workspace.</p>
+            </div>
+          </div>
+          <div class="search-panel">
+            <script async src="https://cse.google.com/cse.js?cx=0349de8d5b2744bd5"></script>
+            <div class="gcse-search"></div>
+          </div>
+        </section>
+
+        <section class="panel-section hidden" id="settings">
+          <div class="panel-header">
+            <div>
+              <h2 data-i18n="settings_title">Smart Settings</h2>
+              <p data-i18n="settings_desc">Ask Gemini to adjust preferences, themes, and exports.</p>
+            </div>
+          </div>
+          <div class="ai-panel">
+            <textarea id="settingsPrompt" placeholder="مثال: اجعل الواجهة ليلية"></textarea>
+            <button class="glow-button" id="settingsRun" data-i18n="apply">Apply with Gemini</button>
+            <div class="ai-output" id="settingsOutput"></div>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="loader">
+      <div class="loader-ring"></div>
+      <p data-i18n="loading">Loading your workspace...</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
